@@ -14,3 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentFilter = "all";
   const renderTasks = (filter = "all") => {
     todoList.innerHTML = "";
+tasks
+      .filter((task) => {
+        if (filter === "done") return task.done;
+        if (filter === "todo") return !task.done;
+        return true;
+      })
