@@ -11,3 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const confirmDeleteButton = document.getElementById("confirmDeleteButton");
   const cancelDeleteButton = document.getElementById("cancelDeleteButton");
   const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  let currentFilter = "all";
+  const renderTasks = (filter = "all") => {
+    todoList.innerHTML = "";
