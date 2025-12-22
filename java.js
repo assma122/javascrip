@@ -19,4 +19,14 @@ tasks
         if (filter === "done") return task.done;
         if (filter === "todo") return !task.done;
         return true;
+<<<<<<< HEAD
       })
+=======
+      })
+
+      .forEach((task, index) => {
+        const listItem = document.createElement("li");
+        listItem.className = "task-item";
+        listItem.innerHTML = `
+         <div class="todo-item">
+>>>>>>> asma
