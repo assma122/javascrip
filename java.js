@@ -19,14 +19,33 @@ tasks
         if (filter === "done") return task.done;
         if (filter === "todo") return !task.done;
         return true;
-<<<<<<< HEAD
+
       })
-=======
-      })
+
+      
 
       .forEach((task, index) => {
         const listItem = document.createElement("li");
         listItem.className = "task-item";
         listItem.innerHTML = `
          <div class="todo-item">
->>>>>>> asma
+ <span style="${
+          task.done ? "text-decoration: line-through;color: red;" : ""
+        }">${task.name}</span>
+
+        <div class="task-actions" >
+          
+          <input type="checkbox"    ${
+            task.done ? "checked" : ""
+          } data-index="${index}" class="toggle-task" id="checkbox">
+          <button data-index="${index}" class="edit-task" id="icon"><i data-index="${index}" class="fa-solid fa-pen edit-task" style="color: #FFD43B;"></i></button>
+          <button data-index="${index}" class="delete-task"  id="icon"><i data-index="${index}" class="fa-solid fa-trash delete-task " style="color: #d70909;"></i>
+          </button>
+        </div>
+        </div>
+      `;
+        todoList.appendChild(listItem);
+      });
+  };
+
+  
