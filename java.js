@@ -52,4 +52,10 @@ tasks
     localStorage.setItem("tasks", JSON.stringify(tasks));
     renderTasks(currentFilter);
   };
+
+
+   addTaskButton.addEventListener("click", () => {
+    const taskName = taskInput.value.trim();
+    const errorMessage = document.getElementById("error-message");
+    errorMessage.textContent = "";
   
