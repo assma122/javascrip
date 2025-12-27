@@ -83,3 +83,11 @@ tasks
     if (e.target.classList.contains("toggle-task")) {
       tasks[index].done = !tasks[index].done;
     }
+
+    if (e.target.classList.contains("edit-task")) {
+      const currentTaskName = tasks[index].name;
+      const modal = document.getElementById("editPopup");
+      const modalInput = document.getElementById("modalInput");
+      const modalError = document.getElementById("modalError");
+      const saveButton = document.getElementById("saveButton");
+      const cancelButton = document.getElementById("cancelButton");
