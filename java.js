@@ -14,20 +14,22 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentFilter = "all";
   const renderTasks = (filter = "all") => {
     todoList.innerHTML = "";
-
-    tasks
+tasks
       .filter((task) => {
         if (filter === "done") return task.done;
         if (filter === "todo") return !task.done;
         return true;
+
       })
+
+      
+
       .forEach((task, index) => {
         const listItem = document.createElement("li");
         listItem.className = "task-item";
         listItem.innerHTML = `
          <div class="todo-item">
-
-        <span style="${
+ <span style="${
           task.done ? "text-decoration: line-through;color: red;" : ""
         }">${task.name}</span>
 
@@ -51,12 +53,13 @@ document.addEventListener("DOMContentLoaded", () => {
     renderTasks(currentFilter);
   };
 
-  addTaskButton.addEventListener("click", () => {
+
+   addTaskButton.addEventListener("click", () => {
     const taskName = taskInput.value.trim();
     const errorMessage = document.getElementById("error-message");
     errorMessage.textContent = "";
-
-    if (!taskName) {
+  
+     if (!taskName) {
       errorMessage.textContent = "Task cannot be empty.";
       return;
     }
@@ -73,12 +76,12 @@ document.addEventListener("DOMContentLoaded", () => {
     saveTasks();
     taskInput.value = "";
   });
-
   todoList.addEventListener("click", (e) => {
     const index = e.target.dataset.index;
     if (e.target.classList.contains("toggle-task")) {
       tasks[index].done = !tasks[index].done;
     }
+
     if (e.target.classList.contains("edit-task")) {
       const currentTaskName = tasks[index].name;
       const modal = document.getElementById("editPopup");
@@ -87,6 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const saveButton = document.getElementById("saveButton");
       const cancelButton = document.getElementById("cancelButton");
 
+      
       modalInput.value = currentTaskName;
       modalError.textContent = "";
 
@@ -100,6 +104,8 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
+
+        
         if (newName.length < 5) {
           modalError.textContent = "Task must be at least 5 characters long.";
           return;
@@ -119,60 +125,3 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.style.display = "none";
       };
     }
-    if (e.target.classList.contains("delete-task")) {
-      confirmationModal.style.display = "flex";
-
-      confirmDeleteButton.onclick = () => {
-        tasks.splice(index, 1);
-        saveTasks();
-        confirmationModal.style.display = "none";
-      };
-
-      cancelDeleteButton.onclick = () => {
-        confirmationModal.style.display = "none";
-      };
-    }
-    saveTasks();
-  });
-
-  allTasksButton.addEventListener("click", () => {
-    currentFilter = "all";
-    renderTasks("all");
-  });
-
-  doneTasksButton.addEventListener("click", () => {
-    currentFilter = "done";
-    renderTasks("done");
-  });
-
-  todoTasksButton.addEventListener("click", () => {
-    currentFilter = "todo";
-    renderTasks("todo");
-  });
-  deleteDoneTasks.addEventListener("click", () => {
-    const filteredTasks = tasks.filter((task) => !task.done);
-    tasks.length = 0;
-    tasks.push(...filteredTasks);
-    saveTasks();
-  });
-
-  deleteAllTasks.addEventListener("click", () => {
-    if (tasks.length === 0) {
-      return;
-    }
-
-    confirmationModal.style.display = "flex";
-
-    confirmDeleteButton.onclick = () => {
-      tasks.length = 0;
-      saveTasks();
-      confirmationModal.style.display = "none";
-    };
-
-    cancelDeleteButton.onclick = () => {
-      confirmationModal.style.display = "none";
-    };
-  });
-
-  renderTasks(currentFilter);
-});
