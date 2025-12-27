@@ -76,8 +76,6 @@ tasks
     saveTasks();
     taskInput.value = "";
   });
-
-  
   todoList.addEventListener("click", (e) => {
     const index = e.target.dataset.index;
     if (e.target.classList.contains("toggle-task")) {
@@ -91,3 +89,17 @@ tasks
       const modalError = document.getElementById("modalError");
       const saveButton = document.getElementById("saveButton");
       const cancelButton = document.getElementById("cancelButton");
+
+      
+      modalInput.value = currentTaskName;
+      modalError.textContent = "";
+
+      modal.style.display = "flex";
+
+      saveButton.onclick = () => {
+        const newName = modalInput.value.trim();
+
+        if (!newName) {
+          modalError.textContent = "Task cannot be empty.";
+          return;
+        }
