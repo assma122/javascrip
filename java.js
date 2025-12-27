@@ -14,22 +14,20 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentFilter = "all";
   const renderTasks = (filter = "all") => {
     todoList.innerHTML = "";
-tasks
+
+    tasks
       .filter((task) => {
         if (filter === "done") return task.done;
         if (filter === "todo") return !task.done;
         return true;
-
       })
-
-      
-
       .forEach((task, index) => {
         const listItem = document.createElement("li");
         listItem.className = "task-item";
         listItem.innerHTML = `
          <div class="todo-item">
- <span style="${
+
+        <span style="${
           task.done ? "text-decoration: line-through;color: red;" : ""
         }">${task.name}</span>
 
@@ -53,13 +51,12 @@ tasks
     renderTasks(currentFilter);
   };
 
-
-   addTaskButton.addEventListener("click", () => {
+  addTaskButton.addEventListener("click", () => {
     const taskName = taskInput.value.trim();
     const errorMessage = document.getElementById("error-message");
     errorMessage.textContent = "";
-  
-     if (!taskName) {
+
+    if (!taskName) {
       errorMessage.textContent = "Task cannot be empty.";
       return;
     }
@@ -76,12 +73,12 @@ tasks
     saveTasks();
     taskInput.value = "";
   });
+
   todoList.addEventListener("click", (e) => {
     const index = e.target.dataset.index;
     if (e.target.classList.contains("toggle-task")) {
       tasks[index].done = !tasks[index].done;
     }
-
     if (e.target.classList.contains("edit-task")) {
       const currentTaskName = tasks[index].name;
       const modal = document.getElementById("editPopup");
@@ -90,7 +87,6 @@ tasks
       const saveButton = document.getElementById("saveButton");
       const cancelButton = document.getElementById("cancelButton");
 
-      
       modalInput.value = currentTaskName;
       modalError.textContent = "";
 
@@ -104,8 +100,6 @@ tasks
           return;
         }
 
-
-        
         if (newName.length < 5) {
           modalError.textContent = "Task must be at least 5 characters long.";
           return;
