@@ -59,3 +59,20 @@ tasks
     const errorMessage = document.getElementById("error-message");
     errorMessage.textContent = "";
   
+     if (!taskName) {
+      errorMessage.textContent = "Task cannot be empty.";
+      return;
+    }
+    if (taskName.length < 5) {
+      errorMessage.textContent = "Task must be at least 5 characters long.";
+      return;
+    }
+    if (/\d/.test(taskName)) {
+      errorMessage.textContent = "Task cannot contain numbers.";
+      return;
+    }
+
+    tasks.push({ name: taskName, done: false });
+    saveTasks();
+    taskInput.value = "";
+  });
