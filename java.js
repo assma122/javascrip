@@ -76,3 +76,10 @@ tasks
     saveTasks();
     taskInput.value = "";
   });
+
+  
+  todoList.addEventListener("click", (e) => {
+    const index = e.target.dataset.index;
+    if (e.target.classList.contains("toggle-task")) {
+      tasks[index].done = !tasks[index].done;
+    }
