@@ -21,3 +21,45 @@
       <button id="doneTasks">Done</button>
       <button id="todoTasks">Todo</button>
     </div>
+     <ul id="todoList"></ul>
+
+    <div class="bottom-buttons">
+      <button id="deleteDoneTasks">Delete Done Tasks</button>
+      <button id="deleteAllTasks">Delete All Tasks</button>
+    </div>
+  </div>
+
+  <!-- Edit Modal -->
+  <div id="editPopup" class="modal">
+    <div class="modal-content">
+      <h2>Edit Task</h2>
+      <input id="modalInput">
+      <span id="modalError" style="color:red"></span>
+      <button id="saveButton">Save</button>
+      <button id="cancelButton">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Confirmation Modal -->
+  <div id="confirmationPopup" class="modal">
+    <div class="modal-content">
+      <h2>Are you sure?</h2>
+      <button id="confirmDeleteButton">Yes</button>
+      <button id="cancelDeleteButton">No</button>
+    </div>
+  </div>
+
+
+  <script src="java.js"></script>
+</body>
+<div id="confirmationPopup" class="modal" style="display:none;">
+  <div class="modal-content">
+    <h2>Are you sure?</h2>
+    <div class="modal-buttons">
+      <button id="confirmDeleteButton" class="save-btn">Yes</button>
+      <button id="cancelDeleteButton" class="cancel-btn">No</button>
+    </div>
+  </div>
+</div>
+
+</html>
