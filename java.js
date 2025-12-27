@@ -103,3 +103,25 @@ tasks
           modalError.textContent = "Task cannot be empty.";
           return;
         }
+
+
+        
+        if (newName.length < 5) {
+          modalError.textContent = "Task must be at least 5 characters long.";
+          return;
+        }
+
+        if (/\d/.test(newName)) {
+          modalError.textContent = "Task cannot contain numbers.";
+          return;
+        }
+
+        tasks[index].name = newName;
+        saveTasks();
+        modal.style.display = "none";
+      };
+
+      cancelButton.onclick = () => {
+        modal.style.display = "none";
+      };
+    }
