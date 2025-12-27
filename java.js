@@ -125,3 +125,60 @@ tasks
         modal.style.display = "none";
       };
     }
+    if (e.target.classList.contains("delete-task")) {
+      confirmationModal.style.display = "flex";
+
+      confirmDeleteButton.onclick = () => {
+        tasks.splice(index, 1);
+        saveTasks();
+        confirmationModal.style.display = "none";
+      };
+
+      cancelDeleteButton.onclick = () => {
+        confirmationModal.style.display = "none";
+      };
+    }
+    saveTasks();
+  });
+
+  allTasksButton.addEventListener("click", () => {
+    currentFilter = "all";
+    renderTasks("all");
+  });
+
+  doneTasksButton.addEventListener("click", () => {
+    currentFilter = "done";
+    renderTasks("done");
+  });
+
+  todoTasksButton.addEventListener("click", () => {
+    currentFilter = "todo";
+    renderTasks("todo");
+  });
+  deleteDoneTasks.addEventListener("click", () => {
+    const filteredTasks = tasks.filter((task) => !task.done);
+    tasks.length = 0;
+    tasks.push(...filteredTasks);
+    saveTasks();
+  });
+
+  deleteAllTasks.addEventListener("click", () => {
+    if (tasks.length === 0) {
+      return;
+    }
+
+    confirmationModal.style.display = "flex";
+
+    confirmDeleteButton.onclick = () => {
+      tasks.length = 0;
+      saveTasks();
+      confirmationModal.style.display = "none";
+    };
+
+    cancelDeleteButton.onclick = () => {
+      confirmationModal.style.display = "none";
+    };
+  });
+
+  renderTasks(currentFilter);
+});
